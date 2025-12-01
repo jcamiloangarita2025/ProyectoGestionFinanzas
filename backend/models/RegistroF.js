@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Definir modelo para base de datos de estructura de registros financieros
+
 const RegistroF_Schema = new mongoose.Schema({
   usuario: { type: String, required: true },
   descripcion: { type: String, required: true },

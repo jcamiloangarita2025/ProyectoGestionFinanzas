@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../styles/reportes.css';
 
+// Frontend de reportes financieros (Lista de registros)
 export default function ReportesF() {
   const { username } = useParams();
   const nav = useNavigate();
   const [lista, setLista] = useState([]);
   const [editId, setEditId] = useState(null);
 
-  // Estados de edición
+  // Estados para la edicion
   const [editDesc, setEditDesc] = useState('');
   const [editMonto, setEditMonto] = useState('');
   const [editTipo, setEditTipo] = useState('');
@@ -16,15 +17,16 @@ export default function ReportesF() {
   const [editResponsable, setEditResponsable] = useState('');
   const [editFechaMovimiento, setEditFechaMovimiento] = useState('');
 
- 
+  //Obtener registros con username
   const cargar = async () => {
     if (!username) return;
     const r = await fetch(
       `http://localhost:4000/api/registrosF?user=${encodeURIComponent(username)}`
     );
     const data = await r.json();
-
-    if (!Array.isArray(data)) { //Por si no encuentra registros de usuario
+    
+    //Si no encuentra registros devuelve lista vacia
+    if (!Array.isArray(data)) { 
       setLista([]); 
       return;
   }
@@ -35,6 +37,7 @@ export default function ReportesF() {
     cargar();
   }, [username]);
 
+  //Envia al backend peticion de borrar registro con id registro
   const borrar = async (id) => {
     await fetch(`http://localhost:4000/api/registrosF/${id}`, {
       method: 'DELETE'
@@ -43,6 +46,7 @@ export default function ReportesF() {
   };
 
 
+  //Variables para editar informacion
   const iniciarEdicion = (m) => {
     setEditId(m._id);
     setEditDesc(m.descripcion);
@@ -51,12 +55,13 @@ export default function ReportesF() {
     setEditCategoria(m.categoria);
     setEditResponsable(m.responsable);
 
-    // convertir a yyyy-mm-dd para el input date
+    // Convertir a tipo de dato DATE
     setEditFechaMovimiento(
       new Date(m.fechaMovimiento).toISOString().split('T')[0]
     );
   };
 
+  //Enviar al backend peticion para actualizar registro con id y nueva informacion
   const guardarEdicion = async () => {
     await fetch(`http://localhost:4000/api/registrosF/${editId}`, {
       method: 'PUT',
@@ -77,10 +82,10 @@ export default function ReportesF() {
 
   if (!username) return <div className="no-access">No tienes acceso</div>;
 
+  //Frontend HTML
   return (
     <div className="reportes-page">
 
-      {/* ===== HEADER ===== */}
       <header className="reportes-header-bar">
         <div className="reportes-header-left">
           <span className="reportes-menu-icon">☰</span>
@@ -89,15 +94,11 @@ export default function ReportesF() {
           </span>
         </div>
 
-        <button
-          className="reportes-close-btn"
-          onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}
-        >
+        <button className="reportes-close-btn" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}>
           ✕
         </button>
       </header>
 
-      {/* ===== CONTENIDO ===== */}
       <main className="reportes-content">
 
         <h2 className="reportes-title">
@@ -110,7 +111,6 @@ export default function ReportesF() {
 
         <div className="reportes-table">
 
-          {/* ENCABEZADOS */}
           <div className="reportes-header">
             <span>Fecha</span>
             <span>Título</span>
@@ -189,8 +189,6 @@ export default function ReportesF() {
         </div>
 
       </main>
-
-      {/* ===== FOOTER ===== */}
       <footer className="reportes-footer">
         DigitalWave Solutions - 2024
       </footer>

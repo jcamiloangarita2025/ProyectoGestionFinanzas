@@ -3,6 +3,8 @@ const router = express.Router();
 const Usuario = require('../models/usuario');
 
 
+// Definir comportamiento y rutas de pagina de servicios de autorizacion
+
 router.get("/test", (req, res) => {
   res.json({ ok: true, message: "AUTH OK" });
 });
@@ -12,6 +14,7 @@ router.post('/register', async (req, res) => {
   try {
     const { nombre, apellido, correo, username, password } = req.body;
 
+    // Verificar que formulario este lleno completamente 
     if (
       !nombre || !nombre.trim() ||
       !apellido || !apellido.trim() ||
@@ -25,6 +28,7 @@ router.post('/register', async (req, res) => {
       });
     }
     
+    // Verificar que usuario no exista
     const exists = await Usuario.findOne({ username });
     if (exists) return res.json({ ok: false, message: 'Usuario ya existe' });
 
@@ -38,14 +42,14 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login (comprobación simple)
+// Login 
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
     const user = await Usuario.findOne({ username });
 
-    // Si NO existe → devolver 401
+    // Verificar si usuario existe 
     if (!user) {
       //return res.status(401).json({ error: "Credenciales incorrectas 1" });
       return res.json({
@@ -54,7 +58,7 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    // Si la contraseña está mal → devolver 401
+    // Verificar contraseña 
     if (user.password !== password) {
       //return res.status(401).json({ error: "Credenciales incorrectas 2" });
       return res.json({

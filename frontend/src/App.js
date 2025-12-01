@@ -6,6 +6,8 @@ import Menu from "./pages/Menu";
 import NuevoRegistroF from "./pages/NuevoRegistroF";
 import ReportesF from "./pages/ReportesF";
 
+//Definir comportamiento principal de la App, indica que componentes mostrar a partir de los url
+
 function App() {
   return (
     <Router>
@@ -20,10 +22,10 @@ function App() {
         {/* Menú principal */}
         <Route path="/menu/:username" element={<Menu />} />
 
-        {/* Crear movimientos */}
+        {/* Crear registros financieros */}
         <Route path="/nuevoregistroF/:username" element={<NuevoRegistroF />} />
 
-        {/* Listar movimientos */}
+        {/* Reporte Financiero */}
         <Route path="/reportesF/:username" element={<ReportesF />} />
 
       </Routes>

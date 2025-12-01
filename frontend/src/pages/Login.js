@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/login.css';
 
+//Frontend del login 
+
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,6 +12,7 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
 
+    //Enviar al backend informacion del formulario (POST)
     try{
       const r = await fetch('http://localhost:4000/api/auth/login', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -27,20 +30,18 @@ export default function Login() {
     }
   };
 
+  //Interfaz virtual del frontend en HTML
   return (
     <div className="login-page">
       
-      {/* Barra superior morada */}
       <header className="top-bar">
-        
       </header>
 
       <div className="login-card">
         <h1 className="app-title">Gestión Finanzas Personales</h1>
 
-        {/* ESPACIO PARA IMAGEN */}
+      
         <div className="login-image">
-          {/* Aquí puedes poner tu imagen */}
           { <img src="/media/applogo.png" alt="Logo" /> }
         </div>
 

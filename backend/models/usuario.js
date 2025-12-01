@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Definir modelo para base de datos de estructura de usuario
+
 const UsuarioSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   apellido: { type: String, required: true },

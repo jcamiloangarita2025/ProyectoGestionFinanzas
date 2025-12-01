@@ -1,4 +1,4 @@
-/* ===== HEADER ===== */
+/* HEADER */
 .reportes-header-bar {
   height: 60px;
   background: #ffffff;
@@ -21,8 +21,8 @@
 }
 
 .reportes-title-bar {
-   font-size: 18px;      /* ⬅ más grande */
-   font-weight: 600;    /* ⬅ más fuerte */
+   font-size: 18px;     
+   font-weight: 600;    
 }
 
 .reportes-close-btn {
@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-/* ===== CONTENIDO ===== */
+/* CONTENIDO */
 .reportes-content {
   flex: 1;
   padding-top: 20px;
@@ -47,7 +47,7 @@
 .reportes-page {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;    /* header arriba, footer abajo */
+  flex-direction: column;    
   background: #ffffff;
 }
 
@@ -170,7 +170,7 @@
 
 
 
-/* ===== FOOTER ===== */
+/* FOOTER*/
 .reportes-footer {
   margin-top: auto;   
   text-align: center;

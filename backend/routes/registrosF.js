@@ -4,11 +4,13 @@ const RegistroF = require('../models/RegistroF');
 const Usuario = require('../models/usuario');
 
 
-// Crear movimiento
+// Definir comportamiento CRUD para registros financieros 
+
 router.post('/', async (req, res) => {
   try {
     const { usuario, descripcion, monto, tipo, categoria, responsable, fechaMovimiento } = req.body;
 
+    // Verificar que formulario este lleno completamente 
     if (!usuario ||!descripcion || !monto || !tipo || !categoria || !responsable || !fechaMovimiento) {
       return res.json({
         ok: false,
@@ -32,14 +34,13 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // Opcional: validar que sea mayor que 0
+    // Validar que sea mayor que 0
     if (Number(monto) <= 0) {
       return res.status(400).json({
         ok: false,
         message: "El monto debe ser mayor a 0"
       });
     }
-
 
     const mov = new RegistroF({ usuario, descripcion, monto, tipo, categoria, responsable, fechaMovimiento });
     await mov.save();
@@ -52,7 +53,7 @@ router.post('/', async (req, res) => {
 
 
 
-// Listar movimientos filtrando por usuario (query ?user=...)
+// Reportes financieros
 router.get('/', async (req, res) => {
   try {
     const user = req.query.user;
@@ -64,7 +65,7 @@ router.get('/', async (req, res) => {
       });
     }
 
-    //Por si usuario no existe enviar mensaje
+    //Por si usuario no existe, enviar mensaje
     const existeUsuario = await Usuario.findOne({username: user });
     if (!existeUsuario) {
       return res.status(404).json({ message: "Usuario no existe" });
@@ -72,7 +73,7 @@ router.get('/', async (req, res) => {
 
     const lista = await RegistroF.find({ usuario: user }).sort({ createdAt: -1 });
   
-    // Aunque esté vacía, NO es error
+    // Enviar lista de registros (reportes)
     return res.status(200).json(lista);
     
   } catch (err) {
@@ -88,8 +89,10 @@ router.put('/:id', async (req, res) => {
     const upd = await RegistroF.findByIdAndUpdate(
       req.params.id,
       { descripcion,monto, tipo,categoria,responsable, fechaMovimiento},
-      { new: true }   // devuelve el documento actualizado
+      { new: true }   
     );
+
+    //Verificar si registro existe
     if (!upd) {
       return res.json({ ok: false, message: 'Registro no encontrado'
       });

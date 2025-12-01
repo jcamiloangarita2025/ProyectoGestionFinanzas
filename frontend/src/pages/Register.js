@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link} from 'react-router-dom';
 import '../styles/register.css';
 
+// Frontend para registrar usuario
 export default function Register() {
   
   const [nombre, setNombre] = useState('');
@@ -11,6 +12,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const nav = useNavigate();
 
+  //Enviar al backend informacion del formulario (POST)
   const submit = async (e) => {
     e.preventDefault();
     const r = await fetch('http://localhost:4000/api/auth/register', {
@@ -29,7 +31,6 @@ export default function Register() {
   return (
     <div className="register-page">
 
-      {/* Barra superior */}
       <header className="top-bar">
         
         <Link to="/">
@@ -39,8 +40,7 @@ export default function Register() {
 
       <div className="register-card">
         <h1 className="app-title">Gestión Finanzas Personales</h1>
-
-        {/* Espacio para imagen */}
+        
         <div className="login-image">
           <img src="/media/applogo.png" alt="Logo" />
         </div>
