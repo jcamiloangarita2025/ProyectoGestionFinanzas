@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
       });
     }
 
-    //Por si usuario no existe
+    //Por si usuario no existe enviar mensaje
     const existeUsuario = await Usuario.findOne({username: user });
     if (!existeUsuario) {
       return res.status(404).json({ message: "Usuario no existe" });
