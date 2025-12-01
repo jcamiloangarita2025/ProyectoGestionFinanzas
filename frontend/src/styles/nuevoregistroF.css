@@ -1,0 +1,121 @@
+/* ================== CONTENEDOR PRINCIPAL ================== */
+.crear-page {
+  min-height: 100vh;
+  width: 100vw;                 /* 🔑 fuerza ancho completo */
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* ================== HEADER ================== */
+.crear-header-bar {
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.crear-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crear-menu-icon {
+  font-size: 26px;
+  color: #61339b;
+}
+
+.crear-title-bar {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.crear-close-btn {
+  background: transparent;
+  border: 2px solid #61339b;
+  color: #61339b;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ================== CONTENIDO ================== */
+.crear-content {
+  flex: 1;                     
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+/* ================== TARJETA DEL FORMULARIO ================== */
+.crear-card {
+  width: 380px;
+  text-align: center;
+}
+
+/* ================== TÍTULO ================== */
+.crear-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* ================== FORMULARIO ================== */
+.crear-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.crear-form input,
+.crear-form select {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e2e2e2;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.crear-form input:focus,
+.crear-form select:focus {
+  outline: none;
+  border-color: #7b5ba7;
+}
+
+/* ================== BOTÓN PRINCIPAL ================== */
+.crear-btn {
+  margin-top: 22px;
+  padding: 12px;
+  background: #61339b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.crear-btn:hover {
+  background: #4e277e;
+}
+
+/* ================== FOOTER ================== */
+.crear-footer {
+  width: 100vw;                 
+  margin-top: auto;            
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  padding: 18px;
+  border-top: 2px solid #7b5ba7;
+  box-sizing: border-box;
+}

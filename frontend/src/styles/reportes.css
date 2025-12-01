@@ -1,0 +1,182 @@
+/* ===== HEADER ===== */
+.reportes-header-bar {
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.reportes-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reportes-menu-icon {
+  font-size: 26px;
+  color: #61339b;
+}
+
+.reportes-title-bar {
+   font-size: 18px;      /* ⬅ más grande */
+   font-weight: 600;    /* ⬅ más fuerte */
+}
+
+.reportes-close-btn {
+  background: transparent;
+  border: 2px solid #61339b;
+  color: #61339b;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ===== CONTENIDO ===== */
+.reportes-content {
+  flex: 1;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+.reportes-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;    /* header arriba, footer abajo */
+  background: #ffffff;
+}
+
+.reportes-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* TABLA */
+.reportes-table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.reportes-header,
+.reportes-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1.2fr 1fr 1.3fr 1.4fr 1fr;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.reportes-header {
+  font-size: 13px;
+  color: #444;
+  font-weight: 500;
+  padding: 8px 0;
+  border-bottom: 2px solid #ddd;
+}
+
+.reportes-row {
+  background: #fff;
+  border: 1.5px solid #7b5ba7;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* COLORES DE TIPO */
+.tipo-gasto {
+  color: #7b5ba7;
+  font-weight: 500;
+}
+
+.tipo-ingreso {
+  color: #7b5ba7;
+  font-weight: 500;
+}
+
+/* ACCIONES */
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.acciones button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-delete {
+  color: crimson;
+}
+
+/* EDITAR */
+.edit-box-full {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.edit-box-full input,
+.edit-box-full select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.edit-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.edit-actions button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #61339b;
+  color: white;
+}
+
+/* NUEVO REGISTRO */
+.nuevo-registro {
+  margin-top: 40px;
+  text-align: center;
+  color: #7b5ba7;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.nuevo-registro span {
+  font-size: 22px;
+  display: block;
+}
+
+/* SIN REGISTROS */
+.no-data {
+  color: #777;
+  font-size: 14px;
+}
+
+
+
+/* ===== FOOTER ===== */
+.reportes-footer {
+  margin-top: auto;   
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  padding: 18px;
+  border-top: 2px solid #7b5ba7;
+}
+

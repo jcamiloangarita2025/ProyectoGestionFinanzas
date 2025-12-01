@@ -1,0 +1,147 @@
+* {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 
+               'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;   /* evita scroll lateral */
+  background: #f2f2f2;  /* mismo color del fondo */
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* FONDO GENERAL */
+.login-page {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0px;   /* espacio real bajo el header */
+  box-sizing: border-box;
+}
+
+/* BARRA SUPERIOR */
+.top-bar {
+  position:relative;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background: #7b5ba7;
+  z-index: 10;
+}
+
+
+/* TARJETA BLANCA */
+.login-card {
+  background: white;
+  margin-top: 40px; 
+  margin-bottom: 40px;   /* aire abajo */
+  width: 420px;
+  padding: 40px 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* TÍTULO PRINCIPAL */
+.app-title {
+   font-size: 23px;
+  font-weight: 600;   /* antes estaba muy grueso */
+  margin-bottom: 22px;
+}
+
+/* CONTENEDOR DE IMAGEN */
+.login-image {
+  height: 120px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* SUBTÍTULOS */
+.login-card h2 {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+/* FORMULARIO */
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-card input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #7b5ba7;
+}
+
+/* BOTÓN */
+.login-card button {
+  background: #61339b;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.login-card button:hover {
+  background: #4e277e;
+}
+
+/* LINK REGISTRO */
+.register-link {
+  display: block;
+  margin-top: 15px;
+  color: #61339b;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.login-footer {
+  margin-top: 35px;
+  font-size: 12px;
+  color: #888;
+}
