@@ -68,7 +68,7 @@
   display: grid;
   grid-template-columns: 1.2fr 2fr 1.2fr 1fr 1.3fr 1.4fr 1fr;
   align-items: center;
-  column-gap: 12px;
+  column-gap: 8px;
 }
 
 .reportes-header {
@@ -113,7 +113,7 @@
 }
 
 .btn-delete {
-  color: crimson;
+  color: #61339b;
 }
 
 /* EDITAR */

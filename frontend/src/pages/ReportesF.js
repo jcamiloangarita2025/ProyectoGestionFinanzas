@@ -112,13 +112,15 @@ export default function ReportesF() {
         <div className="reportes-table">
 
           <div className="reportes-header">
-            <span>Fecha</span>
+            <span>Fecha Realizacion</span>
             <span>Título</span>
+            <span>Categoria</span>
             <span>Monto</span>
             <span>Tipo</span>
-            <span>Registro</span>
+            <span>Fecha Registro</span>
             <span>Responsable</span>
-            <span>Acciones</span>
+            
+            
           </div>
 
 
@@ -155,6 +157,7 @@ export default function ReportesF() {
                 <>
                   <span>{new Date(m.fechaMovimiento).toLocaleDateString()}</span>
                   <span>{m.descripcion}</span>
+                  <span>{m.categoria}</span>
                   <span>${m.monto}</span>
 
                   <span
