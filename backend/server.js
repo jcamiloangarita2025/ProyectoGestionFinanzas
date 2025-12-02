@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const authRoutes = require('./routes/auth');
 const regRoutes = require('./routes/registrosF');
+const eventRoutes = require("./routes/eventos");
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/BDproyecto', {
 // url de la API
 app.use('/api/auth', authRoutes);
 app.use('/api/registrosF', regRoutes);
+app.use("/api/eventos", eventRoutes);   
 
 // Prueba del Backend
 app.get("/", (req, res) => {

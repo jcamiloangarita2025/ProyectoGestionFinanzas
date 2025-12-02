@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../styles/reportes.css';
 
@@ -18,27 +18,33 @@ export default function ReportesF() {
   const [editFechaMovimiento, setEditFechaMovimiento] = useState('');
 
   //Obtener registros con username
-  const cargar = async () => {
+  const cargar = useCallback(async () => {
     if (!username) return;
+
     const r = await fetch(
       `http://localhost:4000/api/registrosF?user=${encodeURIComponent(username)}`
     );
+
     const data = await r.json();
-    
-    //Si no encuentra registros devuelve lista vacia
-    if (!Array.isArray(data)) { 
-      setLista([]); 
+
+    // Si no encuentra registros devuelve lista vacía
+    if (!Array.isArray(data)) {
+      setLista([]);
       return;
-  }
+    }
+
     setLista(data);
-  };
+
+  }, [username]); 
 
   useEffect(() => {
     cargar();
-  }, [username]);
+  }, [cargar]);
 
   //Envia al backend peticion de borrar registro con id registro
   const borrar = async (id) => {
+    if (!window.confirm("¿Eliminar este registro?")) return;
+
     await fetch(`http://localhost:4000/api/registrosF/${id}`, {
       method: 'DELETE'
     });
@@ -93,10 +99,7 @@ export default function ReportesF() {
             Finanzas personales de {username}
           </span>
         </div>
-
-        <button className="reportes-close-btn" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}>
-          ✕
-        </button>
+        <button className="reportes-close-btn" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}>✕</button>
       </header>
 
       <main className="reportes-content">
@@ -112,24 +115,27 @@ export default function ReportesF() {
         <div className="reportes-table">
 
           <div className="reportes-header">
-            <span>Fecha Realizacion</span>
+            <span>Fecha movimiento</span>
             <span>Título</span>
             <span>Categoria</span>
             <span>Monto</span>
             <span>Tipo</span>
-            <span>Fecha Registro</span>
             <span>Responsable</span>
-            
-            
+            <span>Fecha de Registro</span>
+            <span>Fecha de edicion</span>
+            <span>Acciones</span>
           </div>
-
 
           {lista.map((m) => (
             <div className="reportes-row" key={m._id}>
 
               {editId === m._id ? (
                 <div className="edit-box-full">
-
+                  <input
+                    type="date"
+                    value={editFechaMovimiento}
+                    onChange={(e) => setEditFechaMovimiento(e.target.value)}
+                  />
                   <input value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
                   <input type="number" value={editMonto} onChange={(e) => setEditMonto(e.target.value)} />
 
@@ -141,12 +147,6 @@ export default function ReportesF() {
                   <input value={editCategoria} onChange={(e) => setEditCategoria(e.target.value)} />
                   <input value={editResponsable} onChange={(e) => setEditResponsable(e.target.value)} />
 
-                  <input
-                    type="date"
-                    value={editFechaMovimiento}
-                    onChange={(e) => setEditFechaMovimiento(e.target.value)}
-                  />
-
                   <div className="edit-actions">
                     <button onClick={guardarEdicion}>Guardar</button>
                     <button onClick={() => setEditId(null)}>Cancelar</button>
@@ -155,19 +155,14 @@ export default function ReportesF() {
                 </div>
               ) : (
                 <>
-                  <span>{new Date(m.fechaMovimiento).toLocaleDateString()}</span>
+                  <span>{m.fechaMovimiento.split("T")[0]}</span>
                   <span>{m.descripcion}</span>
                   <span>{m.categoria}</span>
                   <span>${m.monto}</span>
-
-                  <span
-                    className={m.tipo === 'Gasto' ? 'tipo-gasto' : 'tipo-ingreso'}
-                  >
-                    {m.tipo}
-                  </span>
-
-                  <span>{new Date(m.createdAt).toLocaleDateString()}</span>
+                  <span className={m.tipo === 'Gasto' ? 'tipo-gasto' : 'tipo-ingreso'}>{m.tipo}</span>
                   <span>{m.responsable}</span>
+                  <span>{new Date(m.createdAt).toLocaleDateString()}</span>
+                  <span>{new Date(m.updatedAt).toLocaleDateString()}</span>
 
                   <div className="acciones">
                     <button onClick={() => iniciarEdicion(m)}>✎</button>
@@ -177,25 +172,20 @@ export default function ReportesF() {
                   </div>
                 </>
               )}
-
             </div>
           ))}
 
         </div>
-
-        <div className="nuevo-registro">
-          
+        <div className="nuevo-registro">         
           <Link to={`/nuevoregistroF/${encodeURIComponent(username)}`}>
           <span>+</span>
           </Link>
           <p>Crear nuevo Registro</p>
         </div>
-
       </main>
       <footer className="reportes-footer">
-        DigitalWave Solutions - 2024
+        DigitalWave Solutions - 2025
       </footer>
-
     </div>
   );
 }

@@ -22,12 +22,12 @@ export default function NuevoRegistroF() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario: username, descripcion, monto: Number(monto),tipo,categoria,responsable,fechaMovimiento })
     });
+    alert("Registro financiero guardado correctamente");
     nav(`/menu/${encodeURIComponent(username)}`);
   };
 
   return (
   <div className="crear-page">
-
     <header className="crear-header-bar">
       <div className="crear-header-left">
         <span className="crear-menu-icon">☰</span>
@@ -35,17 +35,10 @@ export default function NuevoRegistroF() {
           Finanzas personales de {username}
         </span>
       </div>
-
-      <button
-        className="crear-close-btn"
-        onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}
-      >
-        ✕
-      </button>
+      <button className="crear-close-btn" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}> ✕ </button>
     </header>
 
     <main className="crear-content">
-
       <div className="crear-card">
 
         <h2 className="crear-title">Crear nuevo registro</h2>
@@ -76,7 +69,7 @@ export default function NuevoRegistroF() {
       </div>
     </main>
 
-    {/* ===== FOOTER ===== */}
+    {/*FOOTER */}
     <footer className="crear-footer">
       DigitalWave Solutions - 2024
     </footer>

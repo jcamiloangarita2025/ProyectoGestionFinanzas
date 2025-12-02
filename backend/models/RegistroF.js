@@ -9,8 +9,9 @@ const RegistroF_Schema = new mongoose.Schema({
   tipo: { type: String, enum: ['Gasto', 'Ingreso'], required: true},
   categoria: { type: String, required: true},
   responsable: { type: String, required: true},
-  fechaMovimiento: {type: Date,required: true},
-  createdAt: { type: Date, default: Date.now }
+  fechaMovimiento: {type: Date,required: true}
+},{
+  timestamps: true
 });
 
 module.exports = mongoose.model('Registros Financieros', RegistroF_Schema);

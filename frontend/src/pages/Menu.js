@@ -31,9 +31,9 @@ export default function Menu() {
             Reportes <br /> Financieros
           </Link>
 
-          <div className="menu-card">
+          <Link to={`/calendario/${encodeURIComponent(username)}`} className="menu-card">
             Calendario <br /> Financiero
-          </div>
+          </Link>
 
           <div className="menu-card single">
             Bolsillo <br /> Financiero
