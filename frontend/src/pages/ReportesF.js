@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../styles/reportes.css';
+import '../styles/header1.css';
+import '../styles/footer1.css';
 
 // Frontend de reportes financieros (Lista de registros)
 export default function ReportesF() {
@@ -86,106 +88,101 @@ export default function ReportesF() {
     cargar();
   };
 
-  if (!username) return <div className="no-access">No tienes acceso</div>;
+  if (!username) return <div className="no-data">No tienes acceso</div>;
 
   //Frontend HTML
   return (
     <div className="reportes-page">
 
-      <header className="reportes-header-bar">
-        <div className="reportes-header-left">
-          <span className="reportes-menu-icon">☰</span>
-          <span className="reportes-title-bar">
-            Finanzas personales de {username}
-          </span>
+     <header className="app-header">
+      <div className="header-left">
+        <span className="menu-icon">☰</span>
+        <h1>Finanzas personales de {username}</h1>
+      </div>
+
+      <button className="btn-cerrar" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}>✕</button>
+    </header>
+
+      {/* CONTENIDO */}
+    <main className="reportes-content">
+
+      <h2 className="reportes-title">Registros Financieros de {username}</h2>
+      {lista.length === 0 && (
+        <p className="no-data">No hay movimientos registrados</p>
+      )}
+
+      <div className="tabla-container">
+
+        {/* CABECERA DE TABLA */}
+        <div className="tabla-header">
+          <span>Fecha</span>
+          <span>Título</span>
+          <span>Categoría</span>
+          <span>Monto</span>
+          <span>Tipo</span>
+          <span>Responsable</span>
+          <span>Creado</span>
+          <span>Editado</span>
+          <span>Acciones</span>
         </div>
-        <button className="reportes-close-btn" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}>✕</button>
-      </header>
 
-      <main className="reportes-content">
+        {/* FILAS */}
+        {lista.map((m) => (
+          <div className="tabla-row-card" key={m._id}>
 
-        <h2 className="reportes-title">
-          Registros Financieros de {username}
-        </h2>
+            {editId === m._id ? (
+              <div className="edit-box-grid">
+                <input type="date" value={editFechaMovimiento} onChange={(e) => setEditFechaMovimiento(e.target.value)} />
+                <input value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
+                <input type="number" value={editMonto} onChange={(e) => setEditMonto(e.target.value)} />
+                <select value={editTipo}
+                  onChange={(e) => setEditTipo(e.target.value)}>
+                  <option value="Gasto">Gasto</option>
+                  <option value="Ingreso">Ingreso</option>
+                </select>
+                <input value={editCategoria} onChange={(e) => setEditCategoria(e.target.value)} />
 
-        {lista.length === 0 && (
-          <p className="no-data">No hay movimientos registrados</p>
-        )}
+                <input value={editResponsable} onChange={(e) => setEditResponsable(e.target.value)} />
 
-        <div className="reportes-table">
-
-          <div className="reportes-header">
-            <span>Fecha movimiento</span>
-            <span>Título</span>
-            <span>Categoria</span>
-            <span>Monto</span>
-            <span>Tipo</span>
-            <span>Responsable</span>
-            <span>Fecha de Registro</span>
-            <span>Fecha de edicion</span>
-            <span>Acciones</span>
-          </div>
-
-          {lista.map((m) => (
-            <div className="reportes-row" key={m._id}>
-
-              {editId === m._id ? (
-                <div className="edit-box-full">
-                  <input
-                    type="date"
-                    value={editFechaMovimiento}
-                    onChange={(e) => setEditFechaMovimiento(e.target.value)}
-                  />
-                  <input value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
-                  <input type="number" value={editMonto} onChange={(e) => setEditMonto(e.target.value)} />
-
-                  <select value={editTipo} onChange={(e) => setEditTipo(e.target.value)}>
-                    <option value="Gasto">Gasto</option>
-                    <option value="Ingreso">Ingreso</option>
-                  </select>
-
-                  <input value={editCategoria} onChange={(e) => setEditCategoria(e.target.value)} />
-                  <input value={editResponsable} onChange={(e) => setEditResponsable(e.target.value)} />
-
-                  <div className="edit-actions">
-                    <button onClick={guardarEdicion}>Guardar</button>
-                    <button onClick={() => setEditId(null)}>Cancelar</button>
-                  </div>
-
+                <div className="acciones">
+                  <button onClick={guardarEdicion} className="btn-save">✓</button>
+                  <button onClick={() => setEditId(null)} className="btn-cancel">×</button>
                 </div>
-              ) : (
-                <>
-                  <span>{m.fechaMovimiento.split("T")[0]}</span>
-                  <span>{m.descripcion}</span>
-                  <span>{m.categoria}</span>
-                  <span>${m.monto}</span>
-                  <span className={m.tipo === 'Gasto' ? 'tipo-gasto' : 'tipo-ingreso'}>{m.tipo}</span>
-                  <span>{m.responsable}</span>
-                  <span>{new Date(m.createdAt).toLocaleDateString()}</span>
-                  <span>{new Date(m.updatedAt).toLocaleDateString()}</span>
 
-                  <div className="acciones">
-                    <button onClick={() => iniciarEdicion(m)}>✎</button>
-                    <button onClick={() => borrar(m._id)} className="btn-delete">
-                      🗑
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
+              </div>
+            ) : (
+              <>
+                <span>{m.fechaMovimiento.split("T")[0]}</span>
+                <span className="titulo">{m.descripcion}</span>
+                <span>{m.categoria}</span>
+                <span className="monto">${m.monto}</span>
 
-        </div>
-        <div className="nuevo-registro">         
-          <Link to={`/nuevoregistroF/${encodeURIComponent(username)}`}>
-          <span>+</span>
-          </Link>
-          <p>Crear nuevo Registro</p>
-        </div>
-      </main>
-      <footer className="reportes-footer">
-        DigitalWave Solutions - 2025
-      </footer>
+                <span className={m.tipo === 'Gasto' ? 'tipo-gasto' : 'tipo-ingreso'}>
+                  {m.tipo}
+                </span>
+
+                <span>{m.responsable}</span>
+                <span>{new Date(m.createdAt).toLocaleDateString("es-CO")}</span>
+                <span>{new Date(m.updatedAt).toLocaleDateString("es-CO")}</span>
+
+                <div className="acciones">
+                  <button onClick={() => iniciarEdicion(m)} className="btn-edit">✎</button>
+                  <button onClick={() => borrar(m._id)} className="btn-delete">🗑</button>
+                </div>
+              </>
+            )}
+
+          </div>
+        ))}
+      </div>
+
+      <button className="btn-add" onClick={() => nav(`/nuevoregistroF/${username}`)}>
+        + <span>Crear nuevo Registro</span> </button>
+
+    </main>
+      <footer className="app-footer">
+      <p>DigitalWave Solutions - 2025</p>
+    </footer>
     </div>
   );
 }

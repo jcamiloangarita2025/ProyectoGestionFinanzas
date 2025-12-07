@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/menu.css';
+import '../styles/header1.css';
+import '../styles/footer1.css';
 
 //Frontend del menu (despues de hacer login)
 
@@ -12,13 +14,13 @@ export default function Menu() {
     return (
     <div className="menu-page">
 
-      <header className="menu-header">
-        <div className="menu-left">
-          <span className="menu-icon">☰</span>
-          <span className="menu-title"> Finanzas personales de {username} </span>
-        </div>
-        <button className="menu-close-btn" onClick={() => nav('/')}>✕</button>
-      </header>
+      <header className="app-header">
+      <div className="header-left">
+        <span className="menu-icon">☰</span>
+        <h1>Finanzas personales de {username}</h1>
+      </div>
+      <button className="btn-cerrar" onClick={() => nav(`/`)}>✕</button>
+    </header>
 
       <div className="menu-container">
         <div className="menu-grid">
@@ -41,9 +43,10 @@ export default function Menu() {
 
         </div>
       </div>
-      <footer className="menu-footer">
-        DigitalWave Solutions - 2024
-      </footer>
+      {/* FOOTER */}
+        <footer className="menu-footer">
+          DigitalWave Solutions - 2025
+        </footer>
     </div>
   );
 }

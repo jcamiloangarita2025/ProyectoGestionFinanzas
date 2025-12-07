@@ -1,0 +1,37 @@
+/* HEADER  */
+.app-header {
+  height: 60px;
+  background: #5b2db8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.btn-cerrar {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-cerrar:hover {
+  background: white;
+  color: #5b2db8;
+}

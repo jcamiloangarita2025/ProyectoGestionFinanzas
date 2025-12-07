@@ -1,0 +1,11 @@
+
+/*  FOOTER  */
+.app-footer {
+  height: 50px;
+  background: #5b2db8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}

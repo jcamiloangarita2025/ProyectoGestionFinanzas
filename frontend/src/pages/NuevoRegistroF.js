@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/nuevoregistroF.css';
+import '../styles/header1.css';
+import '../styles/footer1.css';
 
 // Frontend para hacer registro financiero
 export default function NuevoRegistroF() {
@@ -27,23 +29,23 @@ export default function NuevoRegistroF() {
   };
 
   return (
+
   <div className="crear-page">
-    <header className="crear-header-bar">
-      <div className="crear-header-left">
-        <span className="crear-menu-icon">☰</span>
-        <span className="crear-title-bar">
-          Finanzas personales de {username}
-        </span>
+    <header className="app-header">
+      <div className="header-left">
+        <span className="menu-icon">☰</span>
+        <h1>Finanzas personales de {username}</h1>
       </div>
-      <button className="crear-close-btn" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}> ✕ </button>
+      <button className="btn-cerrar" onClick={() => nav(`/menu/${encodeURIComponent(username)}`)}>✕</button>
     </header>
 
-    <main className="crear-content">
-      <div className="crear-card">
 
-        <h2 className="crear-title">Crear nuevo registro</h2>
+    <main className="crear-content">
+
 
         <form onSubmit={submit} className="crear-form">
+
+          <h2>Crear nuevo registro</h2>
 
           <input type="date" placeholder="Fecha realización" value={fechaMovimiento} onChange={e => setFechaMovimiento(e.target.value)}
             required
@@ -66,12 +68,10 @@ export default function NuevoRegistroF() {
           </button>
         </form>
 
-      </div>
     </main>
 
-    {/*FOOTER */}
-    <footer className="crear-footer">
-      DigitalWave Solutions - 2024
+    <footer className="app-footer">
+      <p>DigitalWave Solutions - 2025</p>
     </footer>
 
   </div>

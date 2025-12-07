@@ -140,9 +140,10 @@ export default function Calendario() {
 
     <main className="calendario-page">
 
-      <h2 className="titulo-seccion">
-        Calendario Financiero de {username}
-      </h2>
+      <h2 className="titulo-seccion"> Calendario Financiero de {username}</h2>
+      {Object.keys(eventos).length === 0 && (
+        <p className="no-data">No hay eventos creados</p>
+      )}
       <div className="tabla-head">
         <span>Fecha Evento</span>
         <span>Título</span>
@@ -176,8 +177,8 @@ export default function Calendario() {
                   <input name="responsable" value={formEdit.responsable} onChange={handleChangeEdit} />
 
                   <div className="acciones">
-                    <button onClick={guardarEdicion}>✅</button>
-                    <button onClick={() => setEditandoId(null)}>❌</button>
+                    <button onClick={guardarEdicion}>✓</button>
+                    <button onClick={() => setEditandoId(null)}>✕</button>
                   </div>
                 </>
               ) : (
@@ -192,9 +193,9 @@ export default function Calendario() {
                   <span>{ev.responsable}</span>
 
                   <div className="acciones">
-                    <button onClick={() => editarEvento(ev)}>✏️</button>
-                    <button onClick={() => borrarEvento(ev._id)}>🗑️</button>
-                    <button onClick={() => registrarEvento(ev)}>📥</button>
+                    <button onClick={() => editarEvento(ev)}>✎</button>
+                    <button onClick={() => borrarEvento(ev._id)}>🗑</button>
+                    <button onClick={() => registrarEvento(ev)}>↓</button>
                   </div>
                 </>
               )}
@@ -204,13 +205,8 @@ export default function Calendario() {
         </div>
       ))}
 
-      <button
-        className="btn-crear"
-        onClick={() => navigate(`/nuevoEvento/${username}`)}
-      >
-        +
-        <span>Crear nuevo Evento</span>
-      </button>
+      <button className="btn-crear" onClick={() => navigate(`/nuevoEvento/${username}`)}>
+        + <span>Crear nuevo Evento</span> </button>
 
     </main>
 

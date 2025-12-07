@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import '../styles/register.css';
 
 // Frontend para registrar usuario
@@ -31,24 +31,25 @@ export default function Register() {
   return (
     <div className="register-page">
 
-      <header className="top-bar">
-        
-        <Link to="/">
-          <button className="close-btn">✕</button>
-        </Link>
+      <header className="app-header">
+        <div className="header-left">
+          <span className="menu-icon"></span>
+          <h1></h1>
+        </div>
+
+        <button className="btn-cerrar" onClick={() => nav(`/`)}>✕</button>
       </header>
 
       <div className="register-card">
-        <h1 className="app-title">Gestión Finanzas Personales</h1>
+        <form onSubmit={submit} className="form-register">
+           <h1 className="app-title">Gestión Finanzas Personales</h1>
         
-        <div className="login-image">
-          <img src="/media/applogo.png" alt="Logo" />
-        </div>
+          <div className="login-image">
+            <img src="/media/applogo.png" alt="Logo" />
+          </div>
 
-        <h2>Registrar usuario</h2>
-        <p className="subtitle">Completa tus datos</p>
-
-        <form onSubmit={submit}>
+          <h2>Registrar usuario</h2>
+          <p className="subtitle">Completa tus datos</p>
 
           <input placeholder="Nombre" value={nombre}  onChange={e => setNombre(e.target.value)} required />
           <input placeholder="Apellido" value={apellido} onChange={e => setApellido(e.target.value)} required/>
@@ -57,13 +58,11 @@ export default function Register() {
           <input placeholder="Contraseña" type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
           <button type="submit">REGISTRAR</button>
         </form>
-
-        <Link className="register-link" to="/register">Crear cuenta</Link>
-
-        <footer className="register-footer">
-          DigitalWave Solutions - 2024
-        </footer>
       </div>
+      {/* FOOTER */}
+        <footer className="footer-evento">
+          DigitalWave Solutions - 2025
+        </footer>
     </div>
   );
 }

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Usuario = require('../models/usuario');
 
-
 // Definir comportamiento y rutas de pagina de servicios de autorizacion
 
 router.get("/test", (req, res) => {
@@ -15,13 +14,8 @@ router.post('/register', async (req, res) => {
     const { nombre, apellido, correo, username, password } = req.body;
 
     // Verificar que formulario este lleno completamente 
-    if (
-      !nombre || !nombre.trim() ||
-      !apellido || !apellido.trim() ||
-      !correo || !correo.trim() ||
-      !username || !username.trim() ||
-      !password || !password.trim()
-    ) {
+    if (!nombre || !nombre.trim() || !apellido || !apellido.trim() || !correo || !correo.trim() || !username || !username.trim() ||
+      !password || !password.trim()) {
       return res.json({
         ok: false,
         message: 'Todos los campos son obligatorios'
@@ -34,7 +28,7 @@ router.post('/register', async (req, res) => {
 
     const u = new Usuario({ nombre, apellido, correo, username, password });
     await u.save();
-    res.json({ ok: true });
+    res.json({ ok: true, message: 'Usuario creado' });
 
   } catch (err) {
     console.error(err);
@@ -46,16 +40,17 @@ router.post('/register', async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-
     const user = await Usuario.findOne({ username });
+
+     // Verificar que formulario este lleno completamente 
+    if (!username || !username.trim() || !password || !password.trim()) {
+      return res.json({ok: false,message: 'Todos los campos son obligatorios'});
+    }
 
     // Verificar si usuario existe 
     if (!user) {
       //return res.status(401).json({ error: "Credenciales incorrectas 1" });
-      return res.json({
-          ok: false,
-          message: "Usuario no existe"
-      });
+      return res.json({ok: false,message: "Usuario no existe"});
     }
 
     // Verificar contraseña 

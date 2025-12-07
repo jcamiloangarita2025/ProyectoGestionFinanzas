@@ -148,7 +148,7 @@ router.post("/registrar/:id", async (req, res) => {
       tipo: evento.tipo,
       categoria: evento.categoria,
       responsable: evento.responsable,
-      usuario: usuario             
+      usuario: evento.usuario            
     });
 
     await nuevoRegistro.save();

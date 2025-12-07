@@ -1,5 +1,5 @@
-/* CONTENEDOR PRINCIPAL */
-.crear-page {
+/* ===== CONTENEDOR GENERAL ===== */
+.nuevo-evento-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,9 +44,8 @@
   color: #5b2db8;
 }
 
-
 /* ===== CONTENIDO CENTRAL ===== */
-.crear-content {
+.contenido-evento {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -54,8 +53,8 @@
   padding: 40px 20px;
 }
 
-/* CONTENIDO */
-.crear-form {
+/* ===== TARJETA DEL FORMULARIO ===== */
+.form-evento {
   background: #ffffff;
   width: 100%;
   max-width: 520px;
@@ -68,8 +67,17 @@
   border: 2px solid #ded3ff;
 }
 
+/* ===== TÍTULO ===== */
+.form-evento h2 {
+  text-align: center;
+  color: #5a2fc2;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 /* ===== INPUTS Y SELECT ===== */
-.crear-form input{
+.form-evento input{
   width: 95%;
   padding: 14px ;  
   border-radius: 12px;
@@ -79,7 +87,7 @@
   background: #faf9ff;
 }
 
-.crear-form select {
+.form-evento select {
   width: 100%;
   padding: 14px 5px;  
   border-radius: 12px;
@@ -90,20 +98,20 @@
 }
 
 /* ===== FOCUS ===== */
-.crear-form input:focus,
-.crear-form select:focus {
+.form-evento input:focus,
+.form-evento select:focus {
   border-color: #7b54f3;
   box-shadow: 0 0 0 2px rgba(123, 84, 243, 0.15);
   background: #ffffff;
 }
 
 /* ===== PLACEHOLDER ===== */
-.crear-form input::placeholder {
+.form-evento input::placeholder {
   color: #9a8fdc;
 }
 
 /* ===== BOTÓN ===== */
-.crear-form button {
+.form-evento button {
   margin-top: 10px;
   background: linear-gradient(135deg, #7b54f3, #5a2fc2);
   border: none;
@@ -117,7 +125,7 @@
   box-shadow: 0 8px 16px rgba(123, 84, 243, 0.35);
 }
 
-.crear-form button:hover {
+.form-evento button:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 20px rgba(123, 84, 243, 0.5);
 }

@@ -20,50 +20,37 @@ html, body {
 /* FONDO GENERAL */
 .login-page {
   min-height: 100vh;
-  width: 100vw;
-  background: #f2f2f2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 0px;   
-  box-sizing: border-box;
-}
-
-/* BARRA SUPERIOR */
-.top-bar {
-  position:relative;
-  top: 0;
-  left: 0;
-  height: 60px;
-  width: 100%;
-  background: #5b2db8;
-  z-index: 10;
+  background: #f6f3ff;
 }
 
 
 /* TARJETA BLANCA */
 .login-card {
-  background: white;
-  margin-top: 40px; 
-  margin-bottom: 40px;   
-  width: 420px;
-  padding: 40px 30px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
 }
 
 /* TÍTULO PRINCIPAL */
 .app-title {
-   font-size: 23px;
+  color: #5a2fc2;
+  font-weight: bold;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-size: 23px;
   font-weight: 600;   
   margin-bottom: 22px;
 }
 
 /* CONTENEDOR DE IMAGEN */
 .login-image {
-  height: 120px;
-  margin-bottom: 25px;
+  height: 240px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,68 +62,111 @@ html, body {
   object-fit: contain;
 }
 
-/* SUBTÍTULOS */
-.login-card h2 {
-  margin-bottom: 5px;
-  font-weight: 500;
-}
 
 .subtitle {
   color: #777;
   font-size: 14px;
   font-weight: 400;
-  margin-bottom: 25px;
+
 }
 
-/* FORMULARIO */
-.login-card form {
+/* ===== TARJETA DEL FORMULARIO ===== */
+.form-login {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px;
+  padding: 40px 42px;
+  box-shadow: 0 12px 28px rgba(90, 47, 194, 0.18);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  border: 2px solid #ded3ff;
 }
 
-.login-card input {
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+/* ===== TÍTULO ===== */
+.form-login h2 {
+  text-align: center;
+  margin-bottom: 8px;
+
 }
 
-.login-card input:focus {
+/* ===== INPUTS Y SELECT ===== */
+.form-login input{
+  width: 95%;
+  padding: 14px ;  
+  border-radius: 12px;
+  border: 1.5px solid #d8ccff;
+  font-size: 15px;
   outline: none;
-  border-color: #7b5ba7;
+  background: #faf9ff;
 }
 
-/* BOTÓN */
-.login-card button {
-  background: #61339b;
+.form-login select {
+  width: 100%;
+  padding: 14px 5px;  
+  border-radius: 12px;
+  border: 1.5px solid #d8ccff;
+  font-size: 15px;
+  outline: none;
+  background: #faf9ff;
+}
+
+/* ===== FOCUS ===== */
+.form-login input:focus,
+.form-login select:focus {
+  border-color: #7b54f3;
+  box-shadow: 0 0 0 2px rgba(123, 84, 243, 0.15);
+  background: #ffffff;
+}
+
+/* ===== PLACEHOLDER ===== */
+.form-login input::placeholder {
+  color: #9a8fdc;
+}
+
+/* ===== BOTÓN ===== */
+.form-login button {
+  margin: 5px auto 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #462195, #a684ff);
   color: white;
   border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 14px;
-font-weight: 500;
-  letter-spacing: 0.3px;
+  border-radius: 10px;
+  padding: 10px 17px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(108, 52, 232, 0.35);
 }
 
-.login-card button:hover {
-  background: #4e277e;
+.form-login button:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 12px 20px rgba(123, 84, 243, 0.5);
 }
 
-/* LINK REGISTRO */
 .register-link {
-  display: block;
-  margin-top: 15px;
-  color: #61339b;
-  text-decoration: none;
-  font-size: 14px;
+  color: white;
+  margin: 5px auto 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #462195, #a684ff);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 17px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(108, 52, 232, 0.35);
 }
 
 .register-link:hover {
-  text-decoration: underline;
+  color: white;
+  transform: translateY(-0.5px);
+  box-shadow: 0 12px 20px rgba(123, 84, 243, 0.5);
 }
 
 /* FOOTER */

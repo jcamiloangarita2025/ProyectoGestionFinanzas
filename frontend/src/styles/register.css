@@ -1,48 +1,19 @@
 
 .register-page {
   min-height: 100vh;
-  width: 100vw;
-  background: #f2f2f2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow-x: hidden;
-}
-
-/* BARRA SUPERIOR */
-.top-bar {
-  width: 100%;
-  height: 60px;
-  background: #7b5ba7;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-}
-
-
-.close-btn {
-  background: transparent;
-  margin-right: 20px;
-  border: 2px solid #fff;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  padding: 4px 10px;
+  background: #f6f3ff;
 }
 
 
 /* TARJETA CENTRAL */
 .register-card {
-  background: white;
-  margin-top: 40px;
-  margin-bottom: 40px;   
-  width: 440px;
-  padding: 40px 30px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
 }
 
 /* TÍTULO APP */
@@ -73,49 +44,91 @@
   font-weight: 500;
 }
 
+
 .subtitle {
   color: #777;
   font-size: 14px;
-  margin-bottom: 25px;
+  font-weight: 400;
+
 }
 
-/* FORMULARIO */
-.register-card form {
+/* ===== TARJETA DEL FORMULARIO ===== */
+.form-register {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 24px;
+  padding: 40px 42px;
+  box-shadow: 0 12px 28px rgba(90, 47, 194, 0.18);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
+  border: 2px solid #ded3ff;
 }
 
-.register-card input {
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+/* ===== TÍTULO ===== */
+.form-register h2 {
+  text-align: center;
+  margin-bottom: 8px;
+
 }
 
-.register-card input:focus {
+/* ===== INPUTS Y SELECT ===== */
+.form-register input{
+  width: 95%;
+  padding: 14px ;  
+  border-radius: 12px;
+  border: 1.5px solid #d8ccff;
+  font-size: 15px;
   outline: none;
-  border-color: #7b5ba7;
+  background: #faf9ff;
 }
 
-/* BOTÓN */
-.register-card button {
-  background: #61339b;
+.form-register select {
+  width: 100%;
+  padding: 14px 5px;  
+  border-radius: 12px;
+  border: 1.5px solid #d8ccff;
+  font-size: 15px;
+  outline: none;
+  background: #faf9ff;
+}
+
+/* ===== FOCUS ===== */
+.form-register input:focus,
+.form-register select:focus {
+  border-color: #7b54f3;
+  box-shadow: 0 0 0 2px rgba(123, 84, 243, 0.15);
+  background: #ffffff;
+}
+
+/* ===== PLACEHOLDER ===== */
+.form-register input::placeholder {
+  color: #9a8fdc;
+}
+
+/* ===== BOTÓN ===== */
+.form-register button {
+  margin: 5px auto 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #462195, #a684ff);
   color: white;
   border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px 17px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 12px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  transition: 0.3s;
+  box-shadow: 0 4px 14px rgba(108, 52, 232, 0.35);
 }
 
-.register-card button:hover {
-  background: #4e277e;
+.form-register button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(123, 84, 243, 0.5);
 }
+
 
 /* LINKS */
 .register-link {

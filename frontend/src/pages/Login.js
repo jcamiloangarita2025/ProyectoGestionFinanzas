@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/login.css';
+import '../styles/header1.css';
+import '../styles/footer1.css';
 
 //Frontend del login 
 
@@ -34,32 +36,34 @@ export default function Login() {
   return (
     <div className="login-page">
       
-      <header className="top-bar">
+      <header className="app-header">
+      <div className="header-left">
+        <span className="menu-icon"></span>
+       
+      </div>
       </header>
 
       <div className="login-card">
-        <h1 className="app-title">Gestión Finanzas Personales</h1>
+          <form onSubmit={submit} className="form-login">
+            <h1 className="app-title">Gestión Finanzas Personales</h1>
 
-      
-        <div className="login-image">
-          { <img src="/media/applogo.png" alt="Logo" /> }
-        </div>
+        
+          <div className="login-image">
+            { <img src="/media/applogo.png" alt="Logo" /> }
+          </div>
 
-        <h2>Ingresar a cuenta</h2>
-        <p className="subtitle">Rellena la información</p>
-
-        <form onSubmit={submit}>
+          <h2>Ingresar a cuenta</h2>
+          <p className="subtitle">Rellena la información</p>
           <input placeholder="Usuario"   value={username}  onChange={e => setUsername(e.target.value)}required/>
           <input  placeholder="Contraseña" type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
           <button type="submit">INGRESAR</button>
+          <Link className="register-link" to="/register">CREAR CUENTA</Link>
         </form>
-
-        <Link className="register-link" to="/register">Crear cuenta</Link>
-
-        <footer className="login-footer">
-          DigitalWave Solutions - 2024
-        </footer>
       </div>
+       {/* FOOTER */}
+        <footer className="footer-evento">
+          DigitalWave Solutions - 2025
+        </footer>
     </div>
   );
 }
