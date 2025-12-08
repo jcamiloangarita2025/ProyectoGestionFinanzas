@@ -10,7 +10,7 @@ describe('Prueba de Login', () => {
     cy.get('button').click();               // Botón Entrar
 
     cy.url().should('include', '/menu');   // Debe ir al menú
-    cy.contains('Bienvenido');              // Verifica texto del menú
+    cy.contains('Finanzas personales');              // Verifica texto del menú
 
   });
 

@@ -106,7 +106,7 @@ export default function ReportesF() {
       {/* CONTENIDO */}
     <main className="reportes-content">
 
-      <h2 className="reportes-title">Registros Financieros de {username}</h2>
+      <h2 className="reportes-title">Reporte Financiero de {username}</h2>
       {lista.length === 0 && (
         <p className="no-data">No hay movimientos registrados</p>
       )}
