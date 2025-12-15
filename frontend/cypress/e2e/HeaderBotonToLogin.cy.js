@@ -6,8 +6,6 @@ describe('Navegación desde Registrar Usuario al Login', () => {
 
     // 2. Ir a la página de registrar usuario
     cy.contains('CREAR CUENTA').click()
-    // o si usas ruta directa:
-    // cy.visit('http://localhost:3000/register')
 
     // 3. Verificar que estamos en la página de registro
     cy.url().should('include', '/register')

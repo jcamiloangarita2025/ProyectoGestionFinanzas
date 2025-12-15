@@ -3,6 +3,10 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../styles/reportes.css';
 import '../styles/header1.css';
 import '../styles/footer1.css';
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS,ArcElement,Tooltip,Legend} from "chart.js";
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 // Frontend de reportes financieros (Lista de registros)
 export default function ReportesF() {
@@ -10,6 +14,26 @@ export default function ReportesF() {
   const nav = useNavigate();
   const [lista, setLista] = useState([]);
   const [editId, setEditId] = useState(null);
+
+  //Prueba
+
+  const [tipoOperacion, setTipoOperacion] = useState("total");
+  const [valorOperacion, setValorOperacion] = useState(0);
+  const [mostrarGrafica, setMostrarGrafica] = useState(false);
+
+  //Graficas
+  const totalIngresos = lista.filter(r => r.tipo === "Ingreso").reduce((a, b) => a + Number(b.monto), 0);
+  const totalGastos = lista.filter(r => r.tipo === "Gasto").reduce((a, b) => a + Number(b.monto), 0);
+  const dataTorta = {
+  labels: ["Ingresos", "Gastos"],
+  datasets: [
+    {
+      data: [totalIngresos, totalGastos],
+      backgroundColor: ["#4caf50", "#e53935"],
+      borderWidth: 1
+    }
+  ]
+};
 
   // Estados para la edicion
   const [editDesc, setEditDesc] = useState('');
@@ -39,9 +63,41 @@ export default function ReportesF() {
 
   }, [username]); 
 
+  const calcularOperaciones = useCallback(() => {
+    if (!Array.isArray(lista) || lista.length === 0) {
+      setValorOperacion(0);
+      return;
+    }
+
+    const montos = lista.map(r => Number(r.monto));
+    const total = montos.reduce((a, b) => a + b, 0);
+
+    const ingresos = lista
+      .filter(r => r.tipo === "Ingreso")
+      .reduce((a, b) => a + Number(b.monto), 0);
+
+    const gastos = lista
+      .filter(r => r.tipo === "Gasto")
+      .reduce((a, b) => a + Number(b.monto), 0);
+
+    let resultado = 0;
+
+    if (tipoOperacion === "total") resultado = total;
+    if (tipoOperacion === "promedio") resultado = total / lista.length;
+    if (tipoOperacion === "maximo") resultado = Math.max(...montos);
+    if (tipoOperacion === "minimo") resultado = Math.min(...montos);
+    if (tipoOperacion === "ingresos") resultado = ingresos;
+    if (tipoOperacion === "gastos") resultado = gastos;
+    if (tipoOperacion === "balance") resultado = ingresos - gastos;
+
+    setValorOperacion(resultado);
+
+  }, [lista, tipoOperacion]);
+
   useEffect(() => {
     cargar();
-  }, [cargar]);
+    calcularOperaciones();
+  }, [cargar, calcularOperaciones]);
 
   //Envia al backend peticion de borrar registro con id registro
   const borrar = async (id) => {
@@ -175,6 +231,49 @@ export default function ReportesF() {
           </div>
         ))}
       </div>
+
+        {/* FILA DE OPERACIONES */}
+        <div className="tabla-row-card fila-operaciones">
+            <span>—</span>
+            <span className="titulo">Operaciones</span>
+            <span>
+            <select
+              value={tipoOperacion}
+              onChange={(e) => setTipoOperacion(e.target.value)}
+            >
+              <option value="total">Total</option>
+              <option value="maximo">Reg máx</option>
+              <option value="minimo">Reg mín</option>
+              <option value="ingresos">Suma ingresos</option>
+              <option value="gastos">Suma gastos</option>
+              <option value="balance">Balance</option>
+              <option value="promedio">Promedio</option>
+            </select>
+            </span>
+            <span className="monto resumen-monto">
+              ${valorOperacion.toLocaleString()}
+            </span>
+            <span>—</span>
+            <span>—</span>
+            <span>—</span>
+            <span>—</span>
+            <div className="acciones">
+            —
+          </div>
+
+        </div>
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <button
+            className="btn-add"
+            onClick={() => setMostrarGrafica(!mostrarGrafica)}>
+             {mostrarGrafica ? "Ocultar gráfica" : "Ver gráfica Gastos vs Ingresos"}
+          </button>
+        </div>
+
+        {mostrarGrafica && (
+        <div style={{ maxWidth: "350px", margin: "30px auto" }}>
+          <Pie data={dataTorta} />
+        </div>)}  
 
       <button className="btn-add" onClick={() => nav(`/nuevoregistroF/${username}`)}>
         + <span>Crear nuevo Registro</span> </button>

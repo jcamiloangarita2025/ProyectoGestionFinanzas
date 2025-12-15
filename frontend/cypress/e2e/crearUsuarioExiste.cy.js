@@ -1,5 +1,5 @@
 describe('Registro de nuevo usuario', () => {
-  it('Debe registrar un nuevo usuario correctamente', () => {
+  it('Debe anunciar que usuario ya existe', () => {
 
     cy.visit('http://localhost:3000/register')
 

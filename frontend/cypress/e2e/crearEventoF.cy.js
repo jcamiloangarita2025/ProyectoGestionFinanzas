@@ -1,5 +1,5 @@
-describe('Login y navegación a Crear Registro Financiero', () => {
-  it('Debe hacer login y entrar a /nuevoregistroF', () => {
+describe('Crear Evento Financiero', () => {
+  it('Debe crear nuevo evento financiero', () => {
 
     // 1. Login
     cy.visit('http://localhost:3000')
@@ -20,7 +20,6 @@ describe('Login y navegación a Crear Registro Financiero', () => {
 
     //Llenar Formulario
 
-      // Llenar formulario
     cy.get('input').eq(0).type('Evento Cypress')
     cy.get('input').eq(1).type('500000')
     cy.get('select').select('Ingreso')

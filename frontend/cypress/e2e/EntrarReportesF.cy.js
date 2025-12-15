@@ -1,5 +1,5 @@
-describe('Login y navegación a Crear Registro Financiero', () => {
-  it('Debe hacer login y entrar a /nuevoregistroF', () => {
+describe('Navegar a reporte financiero', () => {
+  it('Navegar a reporte financiero', () => {
 
     // 1. Login
     cy.visit('http://localhost:3000')

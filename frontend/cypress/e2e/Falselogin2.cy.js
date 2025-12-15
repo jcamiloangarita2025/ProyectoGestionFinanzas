@@ -1,12 +1,11 @@
-describe('Login con contraseña incorrecta', () => {
-  it('Debe mostrar alerta cuando la contraseña es incorrecta', () => {
+describe('Login con usuario inexistente', () => {
+  it('Login con usuario inexistente', () => {
 
     cy.visit('http://localhost:3000')
 
     // Usuario correcto
     cy.get('input').eq(0).type('usuario falso')
 
-    // Contraseña incorrecta
     cy.get('input').eq(1).type('123456')
 
     // Capturar el alert del navegador
